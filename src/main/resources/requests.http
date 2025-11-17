@@ -10,3 +10,35 @@ Content-Type: application/json
 
 ### Get user by id
 GET http://localhost:8080/api/users/1
+
+### Create group
+POST http://localhost:8080/api/groups
+Content-Type: application/json
+
+{
+  "name": "Java Students",
+  "description": "Group for backend developers"
+}
+
+### Add user to group
+POST http://localhost:8080/api/memberships/add?userId=1&groupId=1
+
+### List groups
+GET http://localhost:8080/api/groups
+
+### List memberships
+GET http://localhost:8080/api/memberships
+
+### Create task for group 1
+POST http://localhost:8080/api/tasks/create?groupId=1
+Content-Type: application/json
+
+{
+  "title": "Finish lab 3",
+  "description": "Implement TaskController and test API",
+  "deadline": "2025-12-01T23:59:00"
+}
+
+### Get tasks for group 1
+GET http://localhost:8080/api/tasks/group/1
+
