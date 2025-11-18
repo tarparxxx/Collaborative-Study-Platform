@@ -42,3 +42,37 @@ Content-Type: application/json
 ### Get tasks for group 1
 GET http://localhost:8080/api/tasks/group/1
 
+### Register
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Dmitry",
+  "email": "dima@example.com",
+  "password": "12345"
+}
+
+### Login (correct)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "dima@example.com",
+  "password": "12345"
+}
+
+### Login (wrong password)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "dima@example.com",
+  "password": "wrong"
+}
+
+### Get all activity logs
+GET http://localhost:8080/api/activity/all
+
+### Get logs of user 1
+GET http://localhost:8080/api/activity/user/1
+

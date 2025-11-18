@@ -12,9 +12,17 @@ import java.util.List;
 public class GroupService {
 
     private final GroupRepository groupRepository;
+    private final ActivityLogService activityLogService;
 
     public GroupEntity create(GroupEntity group) {
-        return groupRepository.save(group);
+        GroupEntity saved = groupRepository.save(group);
+
+        activityLogService.log(
+                0L, // пока нет создателя, можно считать системным пользователем
+                "Created group: " + saved.getName()
+        );
+
+        return saved;
     }
 
     public List<GroupEntity> findAll() {
@@ -25,4 +33,5 @@ public class GroupService {
         return groupRepository.findById(id).orElse(null);
     }
 }
+
 

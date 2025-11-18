@@ -1,5 +1,6 @@
 package com.studyplatform.server.services;
 
+import com.studyplatform.server.controllers.NotificationController;
 import com.studyplatform.server.entities.GroupEntity;
 import com.studyplatform.server.entities.Membership;
 import com.studyplatform.server.entities.User;
@@ -18,6 +19,8 @@ public class MembershipService {
     private final MembershipRepository membershipRepository;
     private final UserRepository userRepository;
     private final GroupRepository groupRepository;
+    private final ActivityLogService activityLogService;
+    private final NotificationController notificationController;
 
     public Membership addUserToGroup(Long userId, Long groupId) {
         User user = userRepository.findById(userId).orElse(null);
@@ -31,11 +34,24 @@ public class MembershipService {
         membership.setUser(user);
         membership.setGroupEntity(group);
 
-        return membershipRepository.save(membership);
+        Membership saved = membershipRepository.save(membership);
+
+        activityLogService.log(
+                userId,
+                "User joined group " + groupId
+        );
+
+        notificationController.sendToGroup(
+                groupId,
+                "User " + userId + " joined group " + groupId
+        );
+
+        return saved;
     }
 
     public List<Membership> findAll() {
         return membershipRepository.findAll();
     }
 }
+
 
