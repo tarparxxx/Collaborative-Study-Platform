@@ -22,6 +22,7 @@ public class MembershipService {
     private final GroupRepository groupRepository;
     private final ActivityLogService activityLogService;
     private final NotificationController notificationController;
+    private final NotificationService notificationService;
 
     public Membership addToGroup(Long userId, Long groupId) {
 
@@ -44,10 +45,16 @@ public class MembershipService {
                 "User " + userId + " joined group " + groupId
         );
 
-        // notification for groud members
+        // notification for group members
         notificationController.sendToGroup(
                 groupId,
                 "User " + user.getName() + " joined the group!"
+        );
+
+        // personal notification for user
+        notificationService.notifyUser(
+                userId,
+                "You joined the group: " + group.getName()
         );
 
         return saved;
