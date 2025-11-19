@@ -10,6 +10,7 @@ import com.studyplatform.server.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -22,36 +23,49 @@ public class MembershipService {
     private final ActivityLogService activityLogService;
     private final NotificationController notificationController;
 
-    public Membership addUserToGroup(Long userId, Long groupId) {
+    public Membership addToGroup(Long userId, Long groupId) {
+
         User user = userRepository.findById(userId).orElse(null);
         GroupEntity group = groupRepository.findById(groupId).orElse(null);
 
-        if (user == null || group == null) {
+        if (user == null || group == null)
             return null;
-        }
 
+        // create membership
         Membership membership = new Membership();
         membership.setUser(user);
         membership.setGroupEntity(group);
 
         Membership saved = membershipRepository.save(membership);
 
+        // log
         activityLogService.log(
                 userId,
-                "User joined group " + groupId
+                "User " + userId + " joined group " + groupId
         );
 
+        // notification for groud members
         notificationController.sendToGroup(
                 groupId,
-                "User " + userId + " joined group " + groupId
+                "User " + user.getName() + " joined the group!"
         );
 
         return saved;
     }
 
-    public List<Membership> findAll() {
-        return membershipRepository.findAll();
+    public List<Membership> getUserMemberships(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) return Collections.emptyList();
+        return membershipRepository.findByUser(user);
+    }
+
+    public List<Membership> getGroupMemberships(Long groupId) {
+        GroupEntity group = groupRepository.findById(groupId).orElse(null);
+        if (group == null) return Collections.emptyList();
+        return membershipRepository.findByGroupEntity(group);
     }
 }
+
+
 
 

@@ -15,16 +15,21 @@ public class MembershipController {
     private final MembershipService membershipService;
 
     @PostMapping("/add")
-    public Membership addUserToGroup(
+    public Membership add(
             @RequestParam Long userId,
-            @RequestParam Long groupId
-    ) {
-        return membershipService.addUserToGroup(userId, groupId);
+            @RequestParam Long groupId) {
+        return membershipService.addToGroup(userId, groupId);
     }
 
-    @GetMapping
-    public List<Membership> getAll() {
-        return membershipService.findAll();
+    @GetMapping("/user/{userId}")
+    public List<Membership> getUserMemberships(@PathVariable Long userId) {
+        return membershipService.getUserMemberships(userId);
+    }
+
+    @GetMapping("/group/{groupId}")
+    public List<Membership> getGroupMemberships(@PathVariable Long groupId) {
+        return membershipService.getGroupMemberships(groupId);
     }
 }
+
 

@@ -19,32 +19,53 @@ public class TaskService {
     private final ActivityLogService activityLogService;
     private final NotificationController notificationController;
 
-    public TaskEntity create(TaskEntity task, Long groupId) {
+    public TaskEntity create(Long groupId, TaskEntity task) {
         GroupEntity group = groupRepository.findById(groupId).orElse(null);
         if (group == null) return null;
 
         task.setGroupEntity(group);
         TaskEntity saved = taskRepository.save(task);
 
-        activityLogService.log(
-                0L,
-                "Task created in group " + groupId + ": " + task.getTitle()
-        );
-
-        notificationController.sendToGroup(
-                groupId,
-                "New task created: " + saved.getTitle()
-        );
+        activityLogService.log(0L, "Task created in group " + groupId + ": " + task.getTitle());
+        notificationController.sendToGroup(groupId, "New task created: " + saved.getTitle());
 
         return saved;
     }
 
-    public List<TaskEntity> getGroupTasks(Long groupId) {
-        GroupEntity group = groupRepository.findById(groupId).orElse(null);
-        if (group == null) return null;
+    public TaskEntity get(Long id) {
+        return taskRepository.findById(id).orElse(null);
+    }
 
-        return taskRepository.findByGroupEntity(group);
+    public List<TaskEntity> getGroupTasks(Long groupId) {
+        return taskRepository.findByGroupEntity_GroupId(groupId);
+    }
+
+    public TaskEntity update(Long id, TaskEntity data) {
+        TaskEntity existing = get(id);
+        if (existing == null) return null;
+
+        existing.setTitle(data.getTitle());
+        existing.setDescription(data.getDescription());
+        existing.setDeadline(data.getDeadline());
+
+        TaskEntity saved = taskRepository.save(existing);
+
+        activityLogService.log(0L, "Task updated: " + id);
+
+        return saved;
+    }
+
+    public boolean delete(Long id) {
+        TaskEntity existing = get(id);
+        if (existing == null) return false;
+
+        taskRepository.delete(existing);
+
+        activityLogService.log(0L, "Task deleted: " + id);
+
+        return true;
     }
 }
+
 
 

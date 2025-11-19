@@ -76,3 +76,49 @@ GET http://localhost:8080/api/activity/all
 ### Get logs of user 1
 GET http://localhost:8080/api/activity/user/1
 
+### Add user to group
+POST http://localhost:8080/api/memberships/add?userId=1&groupId=1
+
+### Get all groups of a user
+GET http://localhost:8080/api/memberships/user/1
+
+### Get all users in a group
+GET http://localhost:8080/api/memberships/group/1
+
+
+### Create task in group 1
+POST http://localhost:8080/api/tasks/create?groupId=1
+Content-Type: application/json
+
+{
+  "title": "Test task",
+  "description": "This is a test",
+  "deadline": "2025-12-31T23:00:00"
+}
+
+### Get task from ID
+GET http://localhost:8080/api/tasks/1
+
+
+### Get all tasks in group
+GET http://localhost:8080/api/tasks/group/1
+
+
+### Reload task
+PUT http://localhost:8080/api/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Updated title",
+  "description": "Updated description",
+  "deadline": "2025-12-20T18:00:00"
+}
+
+
+### Delete task
+DELETE http://localhost:8080/api/tasks/1
+
+
+### Check is task deleted
+GET http://localhost:8080/api/tasks/1
+

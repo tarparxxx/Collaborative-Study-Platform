@@ -5,6 +5,8 @@ import com.studyplatform.server.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
@@ -21,5 +23,21 @@ public class UserController {
     public User get(@PathVariable Long id) {
         return userService.get(id);
     }
+
+    @GetMapping
+    public List<User> getAll() {
+        return userService.getAll();
+    }
+
+    @PutMapping("/{id}")
+    public User update(@PathVariable Long id, @RequestBody User user) {
+        return userService.update(id, user);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id) {
+        return userService.delete(id);
+    }
 }
+
 

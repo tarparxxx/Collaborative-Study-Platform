@@ -19,12 +19,31 @@ public class TaskController {
             @RequestParam Long groupId,
             @RequestBody TaskEntity task
     ) {
-        return taskService.create(task, groupId);
+        return taskService.create(groupId, task);
+    }
+
+    @GetMapping("/{id}")
+    public TaskEntity get(@PathVariable Long id) {
+        return taskService.get(id);
     }
 
     @GetMapping("/group/{groupId}")
     public List<TaskEntity> getGroupTasks(@PathVariable Long groupId) {
         return taskService.getGroupTasks(groupId);
     }
+
+    @PutMapping("/{id}")
+    public TaskEntity update(
+            @PathVariable Long id,
+            @RequestBody TaskEntity data
+    ) {
+        return taskService.update(id, data);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id) {
+        return taskService.delete(id);
+    }
 }
+
 
