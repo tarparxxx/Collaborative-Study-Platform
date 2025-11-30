@@ -18,15 +18,20 @@ public class AuthController {
 
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest req) {
+        // Собираем сущность пользователя из DTO
         User user = new User();
         user.setName(req.getName());
         user.setEmail(req.getEmail());
+
+        // В сервис уходит "сырой" пароль, там уже должен происходить BCrypt-хеш
         return authService.register(user, req.getPassword());
     }
 
     @PostMapping("/login")
     public User login(@RequestBody LoginRequest req) {
+        // В AuthService проверяется email + пароль (через BCrypt.matches)
         return authService.login(req.getEmail(), req.getPassword());
     }
 }
+
 

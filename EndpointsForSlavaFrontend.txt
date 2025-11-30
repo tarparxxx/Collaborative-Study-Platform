@@ -1,0 +1,140 @@
+/*
+
+🔵 AUTH
+Регистрация
+
+POST /api/auth/register
+
+Логин
+
+POST /api/auth/login
+
+🔵 USERS
+Получить пользователя по ID
+
+GET /api/users/{id}
+
+Получить всех пользователей
+
+GET /api/users
+
+🔵 GROUPS
+Создать группу
+
+POST /api/groups/create
+
+Получить все группы
+
+GET /api/groups/all
+
+Получить группу по ID
+
+GET /api/groups/{groupId}
+
+Обновить группу
+
+PUT /api/groups/{groupId}
+
+Удалить группу
+
+DELETE /api/groups/{groupId}
+
+🔵 MEMBERSHIPS
+Добавить пользователя в группу
+
+POST /api/memberships/add?userId={id}&groupId={id}
+
+Получить все группы пользователя
+
+GET /api/memberships/user/{userId}
+
+Получить всех участников группы
+
+GET /api/memberships/group/{groupId}
+
+🔵 TASKS
+Создать задачу в группе
+
+POST /api/tasks/create?groupId={groupId}
+
+Получить задачу по ID
+
+GET /api/tasks/{taskId}
+
+Получить задачи группы
+
+GET /api/tasks/group/{groupId}
+
+Обновить задачу
+
+PUT /api/tasks/{taskId}
+
+Удалить задачу
+
+DELETE /api/tasks/{taskId}
+
+🔵 RESOURCES (материалы / ссылки / PDF / файлы)
+Создать ресурс в группе (загрузка ссылок/файлов)
+
+POST /api/resources/create?groupId={groupId}&userId={userId}
+
+Получить ресурсы группы
+
+GET /api/resources/group/{groupId}
+
+Получить ресурсы пользователя
+
+GET /api/resources/user/{userId}
+
+Удалить ресурс
+
+DELETE /api/resources/{resourceId}
+
+🔵 ACTIVITY LOG
+Все события
+
+GET /api/activity/all
+
+Логи конкретного пользователя
+
+GET /api/activity/user/{userId}
+
+🔵 CHAT (REST)
+История сообщений в группе
+
+GET /api/messages/group/{groupId}
+
+🔵 CHAT (WebSocket, STOMP)
+Endpoint WebSocket:
+ws://localhost:8080/ws/websocket
+
+SEND to server:
+/app/chat.sendMessage
+
+SUBSCRIBE from server:
+/topic/chat/{groupId}
+
+Формат сообщения:
+Client → Server
+{
+  "groupId": 1,
+  "senderId": 1,
+  "senderName": "Dino",
+  "content": "Hello!"
+}
+
+Server → Client
+{
+  "id": 5,
+  "groupId": 1,
+  "senderId": 1,
+  "senderName": "Dino",
+  "content": "Hello!",
+  "timestamp": "2025-12-01T22:59:00"
+}
+
+🔥 ГОТОВО → Теперь фронтендер полностью обеспечен API.
+
+*/
+
+// По сути всё, that is it;

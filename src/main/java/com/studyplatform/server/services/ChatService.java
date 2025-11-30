@@ -1,5 +1,6 @@
 package com.studyplatform.server.services;
 
+import com.studyplatform.server.dto.ChatMessageDTO;
 import com.studyplatform.server.entities.ChatMessage;
 import com.studyplatform.server.repositories.ChatRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,21 +13,23 @@ import java.util.List;
 public class ChatService {
 
     private final ChatRepository chatRepository;
-    private final ActivityLogService activityLogService;
 
-    public ChatMessage saveMessage(ChatMessage message) {
-        ChatMessage saved = chatRepository.save(message);
+    public ChatMessage saveMessage(ChatMessageDTO dto) {
 
-        activityLogService.log(
-                message.getSenderId(),
-                "Sent message in group " + message.getGroupId()
-        );
+        ChatMessage msg = new ChatMessage();
+        msg.setGroupId(dto.getGroupId());
+        msg.setSenderId(dto.getSenderId());      // ← ВАЖНО
+        msg.setSenderName(dto.getSenderName());  // ← ВАЖНО
+        msg.setContent(dto.getContent());
 
-        return saved;
+        return chatRepository.save(msg);
     }
 
-    public List<ChatMessage> getGroupHistory(Long groupId) {
+    public List<ChatMessage> getMessages(Long groupId) {
         return chatRepository.findByGroupId(groupId);
     }
 }
+
+
+
 

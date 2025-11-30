@@ -1,3 +1,7 @@
+// Можешь тут брать для фронтенда запросы
+
+// @SlavaPolchenko check it!!!!!
+
 ### Create user
 POST http://localhost:8080/api/users
 Content-Type: application/json
@@ -122,3 +126,98 @@ DELETE http://localhost:8080/api/tasks/1
 ### Check is task deleted
 GET http://localhost:8080/api/tasks/1
 
+
+### Create resource in group
+POST http://localhost:8080/api/resources/create?groupId=1&userId=1
+Content-Type: application/json
+
+{
+  "title": "Lecture 1 PDF",
+  "type": "PDF",
+  "url": "https://example.com/lecture1.pdf"
+}
+
+### Get resources by group
+GET http://localhost:8080/api/resources/group/1
+
+### Get resources by user
+GET http://localhost:8080/api/resources/user/1
+
+### Delete resource
+DELETE http://localhost:8080/api/resources/1
+
+
+# USERS (Optional)
+
+### Get all users
+GET http://localhost:8080/api/users
+
+
+
+# GROUPS (Дополнение)
+
+
+### Get group by ID
+GET http://localhost:8080/api/groups/1
+
+
+
+# CHAT (REST)
+
+
+### Get chat history for group 1
+GET http://localhost:8080/api/messages/group/1
+
+
+
+# CHAT (WebSocket test info)
+
+
+# WebSocket endpoint (используется через WebSocket-клиент, НЕ REST)
+# ws://localhost:8080/ws/websocket
+#
+# STOMP:
+# CONNECT:
+#   CONNECT
+#   accept-version:1.1,1.0
+#   host:localhost
+#
+#   ^@
+#
+# SUBSCRIBE:
+#   SUBSCRIBE
+#   id:sub-1
+#   destination:/topic/chat/1
+#
+#   ^@
+#
+# SEND:
+#   SEND
+#   destination:/app/chat.sendMessage
+#   content-type:application/json
+#
+#   {"groupId":1,"senderId":1,"senderName":"Dino","content":"Test message"}
+#   ^@
+
+
+
+# ACTIVITY LOG (ручное создание лога — только если нужно)
+
+
+### Manually create a log entry (если делаешь тестовый endpoint)
+POST http://localhost:8080/api/activity/log?userId=1&action=ManualLogTest
+
+### Get activity logs (already exists, но продублирую для читаемости)
+GET http://localhost:8080/api/activity/all
+GET http://localhost:8080/api/activity/user/1
+
+
+
+# SWAGGER / OPENAPI
+
+
+### Swagger UI
+GET http://localhost:8080/swagger-ui/index.html
+
+### OpenAPI JSON
+GET http://localhost:8080/v3/api-docs

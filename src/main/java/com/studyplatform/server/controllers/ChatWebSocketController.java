@@ -1,10 +1,10 @@
 package com.studyplatform.server.controllers;
 
+import com.studyplatform.server.dto.ChatMessageDTO;
 import com.studyplatform.server.entities.ChatMessage;
 import com.studyplatform.server.services.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
@@ -15,17 +15,17 @@ public class ChatWebSocketController {
     private final SimpMessagingTemplate messagingTemplate;
     private final ChatService chatService;
 
-    @MessageMapping("/chat.send")
-    public void sendMessage(@Payload ChatMessage message) {
+    @MessageMapping("/chat.sendMessage")
+    public void sendMessage(ChatMessageDTO dto) {
 
-        // Save to Database and log
-        ChatMessage saved = chatService.saveMessage(message);
+        ChatMessage saved = chatService.saveMessage(dto);
 
-        // Send it to group subscribers
+        // отправляем всем подписчикам группы
         messagingTemplate.convertAndSend(
-                "/topic/group/" + saved.getGroupId() + "/chat",
+                "/topic/chat/" + dto.getGroupId(),
                 saved
         );
     }
 }
+
 
