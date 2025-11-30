@@ -177,6 +177,7 @@ GET http://localhost:8080/api/messages/group/1
 # ws://localhost:8080/ws/websocket
 # or http://localhost:8080/ws/websocket
 # попробуй из этих двух по очереди
+
 #
 # STOMP:
 # CONNECT:
