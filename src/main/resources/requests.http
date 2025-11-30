@@ -175,6 +175,8 @@ GET http://localhost:8080/api/messages/group/1
 
 # WebSocket endpoint (используется через WebSocket-клиент, НЕ REST)
 # ws://localhost:8080/ws/websocket
+# or http://localhost:8080/ws/websocket
+# попробуй из этих двух по очереди
 #
 # STOMP:
 # CONNECT:
