@@ -185,16 +185,16 @@ pgsql
 Copy code
 
 ### Client → Server JSON:
-```json
+```
 {
   "groupId": 1,
   "senderId": 1,
   "senderName": "Dino",
   "content": "Hello!"
 }
+```
 Server → Client JSON:
-json
-Copy code
+```
 {
   "id": 10,
   "groupId": 1,
@@ -203,6 +203,7 @@ Copy code
   "content": "Hello!",
   "timestamp": "2025-12-21T14:25:20"
 }
+```
 🧪 Testing
 All endpoints can be tested via:
 
