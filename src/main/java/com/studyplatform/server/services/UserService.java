@@ -43,6 +43,10 @@ public class UserService {
         userRepository.delete(existing);
         return true;
     }
+
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
 
 

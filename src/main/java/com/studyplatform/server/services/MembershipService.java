@@ -71,6 +71,13 @@ public class MembershipService {
         if (group == null) return Collections.emptyList();
         return membershipRepository.findByGroupEntity(group);
     }
+
+    public List<GroupEntity> getUserGroups(Long userId) {
+        return getUserMemberships(userId)
+                .stream()
+                .map(m -> m.getGroupEntity())
+                .toList();
+    }
 }
 
 
