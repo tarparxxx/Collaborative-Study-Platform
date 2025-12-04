@@ -167,20 +167,17 @@ Tables:
 ### WebSocket endpoint:
 ws://localhost:8080/ws/websocket
 
-shell
-Copy code
+
 
 ### SEND messages to:
 /app/chat.sendMessage
 
-shell
-Copy code
+
 
 ### SUBSCRIBE to:
 /topic/chat/{groupId}
 
-pgsql
-Copy code
+
 
 ### Client → Server JSON:
 ```
@@ -214,21 +211,18 @@ WebSocket King / STOMP client
 Postman or Insomnia
 
 ▶ How to Run
-bash
-Copy code
+
 git clone <repository>
 cd study-platform-server
 mvn clean install
 mvn spring-boot:run
 Server will run at:
 
-arduino
-Copy code
+
 http://localhost:8080
 Swagger available at:
 
-bash
-Copy code
+
 http://localhost:8080/swagger-ui/index.html
 👨‍💻 Team
 Role	Name
@@ -248,3 +242,7 @@ This backend fully implements all required functionality from the semester assig
 ✔ WebSocket notifications
 ✔ REST API + Swagger
 ✔ SQLite integration
+
+
+
+Screenshots of Interface:
