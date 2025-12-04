@@ -56,8 +56,7 @@ This project provides a complete backend for a multi-user study environment wher
 Accessible at:
 http://localhost:8080/swagger-ui/index.html
 
-markdown
-Copy code
+
 
 ---
 
@@ -87,8 +86,7 @@ src/main/java/com/studyplatform/server
 ├── services/ # Business logic layers
 └── StudyPlatformServerApplication.java
 
-markdown
-Copy code
+
 
 ---
 
