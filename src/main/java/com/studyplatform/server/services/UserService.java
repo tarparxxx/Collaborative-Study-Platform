@@ -3,6 +3,7 @@ package com.studyplatform.server.services;
 import com.studyplatform.server.entities.User;
 import com.studyplatform.server.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    private final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
 
@@ -46,6 +48,26 @@ public class UserService {
 
     public User getByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User updateName(Long id, String name) {
+        User user = get(id);
+        user.setName(name);
+        return userRepository.save(user);
+    }
+
+    public User updateEmail(Long id, String email) {
+        User user = get(id);
+        user.setEmail(email);
+        return userRepository.save(user);
+    }
+
+
+    public User updatePassword(Long id, String newPassword) {
+        User user = get(id);
+        String hashed = passwordEncoder.encode(newPassword);
+        user.setPasswordHash(hashed);
+        return userRepository.save(user);
     }
 }
 

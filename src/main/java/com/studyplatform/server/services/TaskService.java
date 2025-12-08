@@ -88,6 +88,12 @@ public class TaskService {
 
         return true;
     }
+
+    public TaskEntity markAsDone(Long id) {
+        TaskEntity task = get(id);
+        task.setCompleted(true);
+        return taskRepository.save(task);
+    }
 }
 
 

@@ -40,6 +40,11 @@ public class TaskController {
         return taskService.update(id, data);
     }
 
+    @PutMapping("/{id}/complete")
+    public TaskEntity markAsDone(@PathVariable Long id) {
+        return taskService.markAsDone(id);
+    }
+
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Long id) {
         return taskService.delete(id);

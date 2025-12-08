@@ -27,6 +27,8 @@ public class TaskEntity {
     private LocalDateTime deadline;
 
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    private boolean completed = false;
 }
 
 
