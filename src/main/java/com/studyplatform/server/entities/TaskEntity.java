@@ -1,12 +1,10 @@
 package com.studyplatform.server.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tasks")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,10 +14,9 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taskId;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private GroupEntity groupEntity;
 
-    @NotBlank
     private String title;
 
     private String description;
@@ -28,7 +25,9 @@ public class TaskEntity {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    private boolean completed = false;
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status = TaskStatus.OPEN; // default
 }
+
 
 
