@@ -246,3 +246,28 @@ This backend fully implements all required functionality from the semester assig
 
 
 Screenshots of Interface:
+<img width="396" height="529" alt="{C7FB8A0D-FCF0-4746-9EC7-026D5CAB1EF9}" src="https://github.com/user-attachments/assets/e6602f16-42cb-4b28-b790-e92a24dc2586" />
+
+<img width="396" height="529" alt="{179C3427-8B98-455D-85DE-13E663F13FB9}" src="https://github.com/user-attachments/assets/c476fcd4-e915-48b9-b7b3-318250bf603f" />
+
+<img width="950" height="675" alt="{3C9D06F5-845C-4DB4-875A-5174273503AC}" src="https://github.com/user-attachments/assets/51f50b18-4884-4082-aff0-dc2ffc23b82d" />
+
+<img width="940" height="685" alt="{82C13761-4699-4BE1-8FFE-02130C83C472}" src="https://github.com/user-attachments/assets/b8aa7bf9-bae9-4893-9443-d958207f43f7" />
+
+<img width="949" height="678" alt="{C4213A77-F19E-471A-A5F7-4E57C87162EB}" src="https://github.com/user-attachments/assets/1d92e364-804c-4fbc-b258-daf0f16772fe" />
+
+<img width="957" height="676" alt="{D40726FA-74AE-4304-BCF3-20A2C1AE6315}" src="https://github.com/user-attachments/assets/ddf6d0e9-1162-4443-9f98-c7ac16d97755" />
+
+<img width="950" height="684" alt="{3D2864F7-625F-4093-9C8B-B8B5EFECEA73}" src="https://github.com/user-attachments/assets/15577bf0-3156-41b2-9923-81712b80ab70" />
+
+<img width="950" height="681" alt="{2ED9E9E3-50C9-4234-9FFA-56E669DF2E17}" src="https://github.com/user-attachments/assets/85635688-eff3-4648-a014-1ea707cfc790" />
+
+<img width="951" height="682" alt="{72C893D9-E768-439D-828F-5B7DA12F463A}" src="https://github.com/user-attachments/assets/ca59fe5c-57e7-4335-b2c3-88f8e74fb2d2" />
+
+<img width="951" height="685" alt="{A4424A1C-70FF-470A-9CE6-5BB540E1D6AB}" src="https://github.com/user-attachments/assets/28a3cded-598f-4425-93e9-5dcf5f6943cc" />
+
+
+
+
+
+
